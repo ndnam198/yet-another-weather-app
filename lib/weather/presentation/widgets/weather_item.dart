@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:yet_another_weather_app/widgets/app_icons_icons.dart';
 
@@ -116,7 +117,9 @@ class WeatherItem extends StatelessWidget {
               Transform.translate(
                 offset: const Offset(0, -20),
                 child: FilledButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.push('/details');
+                  },
                   style: FilledButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
