@@ -26,6 +26,7 @@ class CurrentWeatherController extends AsyncNotifier<CurrentWeatherModel> {
 
   @override
   FutureOr<CurrentWeatherModel> build() {
+    getWeather();
     return CurrentWeatherModel.empty();
   }
 }
