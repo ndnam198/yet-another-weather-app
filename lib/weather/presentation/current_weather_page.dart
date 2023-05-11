@@ -2,10 +2,10 @@ import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../widgets/app_icons_icons.dart';
+import '../../widgets/app_icons.dart';
 import '../domain/current_weather_model.dart';
 import '../providers.dart';
-import 'widgets/weather_item.dart';
+import 'widgets/weather_page/weather_general_statistics_list_item.dart';
 
 class CurrentWeatherPage extends ConsumerStatefulWidget {
   const CurrentWeatherPage({super.key});
@@ -13,6 +13,9 @@ class CurrentWeatherPage extends ConsumerStatefulWidget {
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _WeatherGeneralState();
 }
+
+const double _defaultPadding = 16;
+const double _leadIconSize = 56;
 
 class _WeatherGeneralState extends ConsumerState<CurrentWeatherPage> {
   @override
@@ -23,17 +26,14 @@ class _WeatherGeneralState extends ConsumerState<CurrentWeatherPage> {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: FloatingNavbar(
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.all(_defaultPadding),
         onTap: (int id) {},
         currentIndex: 0,
         items: [
-          FloatingNavbarItem(icon: AppIcons.iconoir_home_simple, title: 'Home'),
-          FloatingNavbarItem(
-              icon: AppIcons.noun_search_4511428_1, title: 'Explore'),
-          FloatingNavbarItem(
-              icon: AppIcons.bi_bookmark_dash_fill, title: 'Bookmarks'),
-          FloatingNavbarItem(
-              icon: AppIcons.fluent_person_16_filled, title: 'Personal'),
+          FloatingNavbarItem(icon: AppIcons.home, title: 'Home'),
+          FloatingNavbarItem(icon: AppIcons.search, title: 'Explore'),
+          FloatingNavbarItem(icon: AppIcons.bookmark, title: 'Bookmarks'),
+          FloatingNavbarItem(icon: AppIcons.person, title: 'Personal'),
         ],
         selectedItemColor: const Color.fromRGBO(216, 97, 145, 1),
         unselectedItemColor: const Color(0xFFC4C4C4),
@@ -46,7 +46,7 @@ class _WeatherGeneralState extends ConsumerState<CurrentWeatherPage> {
         shadowColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         foregroundColor: const Color(0xFFFBFBFB),
-        leadingWidth: 56 + 16,
+        leadingWidth: _defaultPadding + _leadIconSize,
         leading: Image.asset(
           'assets/images/app_logo.png',
           height: 56,
@@ -74,7 +74,7 @@ class _WeatherGeneralState extends ConsumerState<CurrentWeatherPage> {
           ),
         ),
         child: const Center(
-          child: WeatherItem(),
+          child: WeatherGeneralStatisticsListItem(),
         ),
       ),
     );
